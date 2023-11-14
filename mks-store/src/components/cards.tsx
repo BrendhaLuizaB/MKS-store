@@ -10,10 +10,37 @@ import {
   ShopButton,
   ShopText,
 } from "./style/style.products";
+import { useState } from "react";
+import Cart from "./cart";
 
-function CardProducts({ product }: { product: any }) {
+type Product = {
+  brand: string;
+  createdAt: string;
+  description: string;
+  id: number;
+  name: string;
+  photo: string;
+  price: string;
+  updatedAt: string;
+};
+interface PropsCart {
+  isOpenCart: boolean;
+  openCart: () => void;
+  product: Product;
+}
+
+function CardProducts({ isOpenCart, openCart, product }: PropsCart) {
+  const emptyCart: Product[] = [];
+  const idProduto = product.id;
+
+  const BuyButton = (idProduto: any) => {
+    const cartProduct = emptyCart[idProduto];
+    console.log(idProduto);
+  };
+
   return (
     <>
+      {/* {isOpenCart && <Cart openCart={openCart} product={product} />} */}
       <BoxCards>
         <div>
           <Image src={product.photo} alt="product" />
@@ -31,7 +58,7 @@ function CardProducts({ product }: { product: any }) {
             </Description>
           </div>
           <div>
-            <ShopButton>
+            <ShopButton onClick={() => BuyButton(idProduto)}>
               <div>
                 <FontAwesomeIcon
                   icon={faBagShopping}

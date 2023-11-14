@@ -9,6 +9,7 @@ import { useState } from 'react';
 
 
 
+
 const inter = Inter({ subsets: ['latin'] })
 
 const queryClient = new QueryClient()
@@ -18,19 +19,15 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
-const [isOpenCart, setIsOpenCart] = useState(false)
 
-const openCart = () => {
-    setIsOpenCart(true)
-}
   return (
     <QueryClientProvider client={queryClient}>
     <html lang="en">
       <body className={inter.className} style={{backgroundColor: "#ffff"}}>
-        <Header isOpenCart={isOpenCart} openCart={openCart}/>
-        {isOpenCart && <Cart/>}
+        {/* <Header isOpenCart={isOpenCart} openCart={openCart}/>
+        {isOpenCart && <Cart openCart={openCart}/>} */}
         {children}
-        <Footer/>
+        {/* <Footer/> */}
         </body> 
     </html>
     </QueryClientProvider>
